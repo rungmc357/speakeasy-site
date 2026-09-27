@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Speakeasy — a realtime voice interface for Hermes Agent</title>
 <meta name="description" content="Speakeasy is a Hermes Agent plugin and native macOS client: realtime speech in front, your own Hermes sessions, tools and memory behind it.">
 <style>
@@ -20,7 +22,8 @@
   /* nav */
   nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
   .logo{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.02em;text-decoration:none}
-  .mark{width:28px;height:28px;border-radius:8px;background:radial-gradient(circle at 30% 30%,var(--brass2),var(--brass) 60%,#8a6427);display:grid;place-items:center;color:#1a1208;font-size:15px}
+  .mark{height:28px;display:inline-flex;align-items:center} .mark svg{height:28px;width:auto}
+  nav .links .gh{display:inline-flex;align-items:center;gap:7px;color:var(--ink)}
   nav .links{display:flex;gap:26px;font-size:15px;color:var(--mute)}
   nav .links a{text-decoration:none} nav .links a:hover{color:var(--ink)}
 
@@ -110,12 +113,13 @@
 <body>
 <div class="wrap">
   <nav>
-    <a class="logo" href="#"><span class="mark">◆</span> Speakeasy</a>
+    <a class="logo" href="#"><span class="mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="156 86 200 338"><defs><linearGradient id="g" gradientUnits="userSpaceOnUse" x1="0" y1="90" x2="0" y2="420"><stop offset="0" stop-color="#f0c872"/><stop offset="1" stop-color="#d4a24c"/></linearGradient></defs><path d="M214 270.9 A100 100 0 1 1 298 270.9 L332 414 H180 Z" fill="url(#g)"/><rect x="185.0" y="169.0" width="18" height="34" rx="9.0" fill="#0d0b09"/><rect x="216.0" y="151.0" width="18" height="70" rx="9.0" fill="#0d0b09"/><rect x="247.0" y="134.0" width="18" height="104" rx="9.0" fill="#0d0b09"/><rect x="278.0" y="151.0" width="18" height="70" rx="9.0" fill="#0d0b09"/><rect x="309.0" y="169.0" width="18" height="34" rx="9.0" fill="#0d0b09"/></svg></span> Speakeasy</a>
     <div class="links">
       <a href="#how">Architecture</a>
       <a href="#features">Features</a>
       <a href="#install">Install</a>
       <a href="#faq">FAQ</a>
+      <a class="gh" href="https://github.com/rungmc357/speakeasy"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
     </div>
   </nav>
 
@@ -126,7 +130,7 @@
       <p class="lede">Speakeasy is a Hermes plugin with a native macOS client. A low-latency speech model handles the conversation. Real work goes to your own Hermes sessions, with their tools, skills, memory and approvals, and several tasks can run in parallel while you keep talking.</p>
       <div class="ctas">
         <a class="btn primary" href="#install">Install the plugin</a>
-        <a class="btn ghost" href="#how">How it's built</a>
+        <a class="btn ghost" href="https://github.com/rungmc357/speakeasy"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>View on GitHub</a>
       </div>
       <p class="fine">GPT-Live-1 via Codex OAuth or the OpenAI API · local or Tailscale · macOS 14+ client · MIT</p>
     </div>
@@ -143,7 +147,7 @@
         <div class="you">You</div>
         “Check why last night's deploy failed, and open a thread in build to fix it.”
       </div>
-      <div class="said"><div class="you">Hermes</div>“On it. Started that in a new #build thread.”</div>
+      <div class="said"><div class="you">Hermes</div>“Sure. Started that in a new #build thread.”</div>
       <div class="task">
         <div class="t">Deploy failure <span class="pill">Working</span></div>
         <div class="s dots">Reading the CI log for the failed job</div>
@@ -218,7 +222,7 @@ hermes voice setup --api-key       <span class="c"># use an OpenAI API key inste
 
 <div class="wrap">
   <footer>
-    <span>◆ Speakeasy · speakeasyvoice.ai</span>
+    <span>Speakeasy · <a href="https://github.com/rungmc357/speakeasy">GitHub</a> · MIT</span>
     <span>Independent project. Not affiliated with Nous Research or OpenAI.</span>
   </footer>
 </div>
