@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Speakeasy — a realtime voice interface for Hermes Agent</title>
-<meta name="description" content="Speakeasy is a Hermes Agent plugin and native macOS client: realtime speech in front, your own Hermes sessions, tools and memory behind it.">
+<title>Speakeasy — talk to your Hermes agent from your Mac</title>
+<meta name="description" content="Talk to your Hermes agent out loud from your Mac. Ask for several things at once, keep talking while it works, and get results where you already read them.">
 <style>
   :root{
     --bg:#0d0b09; --panel:#16130f; --line:#2a241c; --ink:#f3ece0; --mute:#a59a88;
@@ -123,7 +123,7 @@
   <nav>
     <a class="logo" href="#"><span class="mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="156 86 200 338"><defs><linearGradient id="g" gradientUnits="userSpaceOnUse" x1="0" y1="90" x2="0" y2="420"><stop offset="0" stop-color="#f0c872"/><stop offset="1" stop-color="#d4a24c"/></linearGradient></defs><path d="M214 270.9 A100 100 0 1 1 298 270.9 L332 414 H180 Z" fill="url(#g)"/><rect x="185.0" y="169.0" width="18" height="34" rx="9.0" fill="#0d0b09"/><rect x="216.0" y="151.0" width="18" height="70" rx="9.0" fill="#0d0b09"/><rect x="247.0" y="134.0" width="18" height="104" rx="9.0" fill="#0d0b09"/><rect x="278.0" y="151.0" width="18" height="70" rx="9.0" fill="#0d0b09"/><rect x="309.0" y="169.0" width="18" height="34" rx="9.0" fill="#0d0b09"/></svg></span> Speakeasy</a>
     <div class="links">
-      <a href="#how">Architecture</a>
+      <a href="#how">How it works</a>
       <a href="#features">Features</a>
       <a href="#install">Install</a>
       <a href="#faq">FAQ</a>
@@ -135,13 +135,13 @@
     <div>
       <div class="eyebrow">For Hermes Agent</div>
       <h1 class="serif">A realtime voice for <em>your</em> Hermes.</h1>
-      <p class="lede">Speakeasy is a Hermes plugin with a native macOS client. OpenAI's GPT-Live-1 handles the conversation, through your ChatGPT account (Codex OAuth) or an OpenAI API key. Real work goes to your own Hermes sessions, with their tools, skills, memory and approvals, and several tasks can run in parallel while you keep talking.</p>
+      <p class="lede">Talk to your Hermes agent out loud, from your Mac. Ask for several things at once and keep talking while it works. Results land where you already read them. The voice is OpenAI's GPT-Live-1, on your ChatGPT plan or your own API key.</p>
       <div class="ctas">
         <a class="btn primary" href="https://github.com/rungmc357/speakeasy/releases/latest"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M16.37 12.64c-.03-2.6 2.13-3.86 2.22-3.92-1.21-1.77-3.1-2.01-3.77-2.04-1.6-.16-3.13.95-3.94.95-.82 0-2.07-.93-3.4-.9-1.75.03-3.36 1.02-4.26 2.58-1.82 3.15-.47 7.8 1.3 10.36.87 1.25 1.9 2.65 3.25 2.6 1.3-.05 1.8-.84 3.37-.84 1.57 0 2.02.84 3.4.81 1.4-.02 2.29-1.27 3.15-2.53.99-1.45 1.4-2.85 1.42-2.93-.03-.01-2.72-1.04-2.74-4.14zM13.8 5.01c.72-.87 1.2-2.08 1.07-3.29-1.03.04-2.28.69-3.02 1.56-.66.77-1.24 2-1.09 3.18 1.15.09 2.32-.58 3.04-1.45z"/></svg>Download for Mac</a>
         <a class="btn ghost" href="#install">Set up with your agent</a>
         <a class="btn ghost" href="https://github.com/rungmc357/speakeasy"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>View on GitHub</a>
       </div>
-      <p class="fine">Free · signed and notarized · macOS 14+ · needs Hermes Agent with the Speakeasy plugin · GPT-Live-1 via Codex OAuth or the OpenAI API · MIT</p>
+      <p class="fine">Free and open source · macOS 14+ · for Hermes Agent</p>
     </div>
 
     <div class="mock" aria-label="The Speakeasy call panel">
@@ -176,21 +176,11 @@
 <section id="how">
   <div class="wrap">
     <h2 class="serif">Voice in front, Hermes behind.</h2>
-    <p class="sub">Speakeasy has no brain of its own. The speech model only talks and dispatches; anything that needs a tool, a file or a decision becomes a Hermes run. No extra daemon, no hosted relay.</p>
-<div class="arch"><b>Mac client</b> ── WebRTC audio ──▶ <b>realtime speech model</b>  (GPT-Live-1 via Codex OAuth, or OpenAI API)
-     │                                         │ handoff
-     │ pairing token, HTTPS                    ▼
-     └──────────────▶ <b>Speakeasy plugin</b> (a platform inside your Hermes gateway)
-                                 │  /v1/runs · sessions API
-                                 ▼
-                          <b>your Hermes</b>: tools · skills · memory · approvals
-                                 │  hermes send
-                                 ▼
-                          Discord · Telegram · Slack · …</div>
+    <p class="sub">The voice is there to listen and talk. Anything that takes real work goes to your own Hermes, with your tools, your memory and your rules.</p>
     <div class="grid3">
-      <div class="card"><div class="num">1</div><h3>A platform plugin</h3><p>Registers as a gateway platform and serves its own endpoint. It talks to Hermes over the public API only, so it keeps working across Hermes upgrades.</p></div>
-      <div class="card"><div class="num">2</div><h3>A brief, not a copy</h3><p>Your Hermes writes the voice a compact brief: who you are, active projects, what it can do. Secrets and identifiers are filtered before anything reaches the speech provider.</p></div>
-      <div class="card"><div class="num">3</div><h3>Parallel runs, your router model</h3><p>Each request is its own run with live progress. Splitting compound requests, matching follow-ups and picking a channel is one call to a model you choose in your Hermes config.</p></div>
+      <div class="card"><div class="num">1</div><h3>You ask</h3><p>Press a shortcut and talk. Ask for one thing or three; it splits them up and starts on all of them.</p></div>
+      <div class="card"><div class="num">2</div><h3>Hermes works</h3><p>Each task runs in your Hermes, in parallel, and you can see how each one is going while you keep talking.</p></div>
+      <div class="card"><div class="num">3</div><h3>You hear back</h3><p>It tells you when something's done, and the full result goes to Telegram, Discord or wherever you keep your work.</p></div>
     </div>
   </div>
 </section>
@@ -199,12 +189,12 @@
   <div class="wrap">
     <h2 class="serif">What you get.</h2>
     <div class="features">
-      <div class="feat"><div class="ic">#</div><div><h3>Routing by channel</h3><p>Opt in any <code>hermes send</code> target and give each a topic. Name one out loud (“put this in work”) or let a quick classifier pick. Optionally opens a fresh thread per task that you can keep working in.</p></div></div>
-      <div class="feat"><div class="ic">↺</div><div><h3>Session continuity</h3><p>Ask about something already in flight and the run continues inside that existing session, with its history, posting back to the same chat. Toggleable.</p></div></div>
-      <div class="feat"><div class="ic">✓</div><div><h3>Approvals stay yours</h3><p>The voice can't approve anything. Consequential actions stop at Hermes' own approval flow; outbound email renders as a card and only its button sends, bound to a hash of the exact draft.</p></div></div>
-      <div class="feat"><div class="ic">⌁</div><div><h3>GPT-Live-1: Codex OAuth or API</h3><p>By default GPT-Live-1 runs through Codex OAuth on your ChatGPT account, so voice uses the plan you already pay for. Or bring an OpenAI API key and pay per minute. Credentials stay on the Hermes host.</p></div></div>
-      <div class="feat"><div class="ic">⇆</div><div><h3>Tailscale built in</h3><p>Hermes on a home server, Mac on the road: setup detects Tailscale and publishes the voice endpoint on your tailnet only via Tailscale Serve, never Funnel. Same-machine setups use loopback. Devices pair with a single-use link.</p></div></div>
-      <div class="feat"><div class="ic">⌘</div><div><h3>A native client</h3><p>Global hotkey, floating panel with a slim mode, per-task progress, mute and pause. Handles AirPods switching sample rate mid-call.</p></div></div>
+      <div class="feat"><div class="ic">#</div><div><h3>Goes where it belongs</h3><p>Give your chats a topic, like work or family, and each task lands in the right one. Or just say where: “put this in work.”</p></div></div>
+      <div class="feat"><div class="ic">↺</div><div><h3>Picks up where you left off</h3><p>Ask about something already underway and it continues that same conversation instead of starting over.</p></div></div>
+      <div class="feat"><div class="ic">✓</div><div><h3>Nothing happens without you</h3><p>The voice can't approve anything. Sending an email, spending money and other big steps still wait for your OK.</p></div></div>
+      <div class="feat"><div class="ic">⌁</div><div><h3>Uses what you already pay for</h3><p>GPT-Live-1 runs on your ChatGPT plan, with no extra key. Prefer an OpenAI API key? That works too.</p></div></div>
+      <div class="feat"><div class="ic">⇆</div><div><h3>Works from anywhere</h3><p>Hermes on a computer at home, you on the road. With Tailscale, your Mac reaches it privately, and nothing is opened to the internet.</p></div></div>
+      <div class="feat"><div class="ic">⌘</div><div><h3>Stays out of the way</h3><p>One shortcut to start, a small floating panel, mute and pause. Switch AirPods mid-call and it keeps going.</p></div></div>
     </div>
   </div>
 </section>
@@ -212,35 +202,32 @@
 <section id="install">
   <div class="wrap">
     <h2 class="serif">Setup takes one message.</h2>
-    <p class="sub">Speakeasy is agent software, so your agent installs it. Copy this and send it to your Hermes agent in whatever chat you already use: Telegram, Discord, Slack, anywhere.</p>
+    <p class="sub">Your agent sets it up for you. Copy this and send it to Hermes wherever you already chat with it.</p>
     <div class="prompt">
       <p id="prompt-text">Set up Speakeasy for me, so I can talk to you by voice from my Mac. Follow the instructions at https://speakeasyvoice.ai/setup.md</p>
       <button class="btn primary" id="copy-prompt" type="button">Copy</button>
     </div>
     <ol class="steps">
-      <li><b>Your agent installs the plugin</b> on the machine Hermes runs on and turns on voice with your ChatGPT sign-in (GPT-Live-1 through Codex OAuth). Prefer an OpenAI API key? Tell it so.</li>
-      <li><b>Restart Hermes when it asks.</b> Speakeasy never restarts anything on its own.</li>
-      <li><b>Open the link it sends you</b> on the Mac you'll talk from. It offers the download if you don't have the app yet, then connects. No addresses, no typing.</li>
+      <li><b>Your agent sets up Speakeasy</b> on the computer Hermes runs on.</li>
+      <li><b>Restart Hermes when it asks.</b></li>
+      <li><b>Open the link it sends you</b> on your Mac. It gets you the app if you don't have it yet, then connects. Nothing to type.</li>
     </ol>
-    <details class="manual"><summary>Rather do it yourself in Terminal?</summary>
-<pre><span class="c"># on the machine that runs Hermes</span>
+    <details class="manual"><summary>Prefer to set it up yourself?</summary>
+<pre><span class="c"># on the computer that runs Hermes</span>
 hermes plugins install rungmc357/speakeasy#plugin/speakeasy --enable
-hermes voice setup --send telegram   <span class="c"># or discord, slack… where the pairing link should go</span>
-hermes voice setup --api-key         <span class="c"># OpenAI API key instead of your ChatGPT sign-in</span>
-
-<span class="c"># restart Hermes when setup asks; the link arrives by itself afterwards</span></pre>
+hermes voice setup</pre>
     </details>
-    <div class="req"><span>Hermes Agent with the gateway running</span><span>macOS 14+ for the app</span><span>GPT-Live-1: ChatGPT account (Codex OAuth) or OpenAI API key</span><span>Hermes on another computer? <a href="https://tailscale.com/download" style="color:var(--brass2)">Tailscale</a> on both, same account</span></div>
+    <div class="req"><span>Hermes Agent</span><span>A Mac with macOS 14 or later</span><span>A ChatGPT account or an OpenAI API key</span><span>Hermes on another computer? <a href="https://tailscale.com/download" style="color:var(--brass2)">Tailscale</a> on both</span></div>
   </div>
 </section>
 
 <section id="faq">
   <div class="wrap">
     <h2 class="serif">FAQ</h2>
-    <details><summary>What leaves my machine?</summary><p>Audio and the voice brief go to the speech provider you chose (OpenAI, through your own account). Task content goes only to your Hermes. There is no Speakeasy server.</p></details>
-    <details><summary>Does it change my Hermes config?</summary><p>Setup adds one platform block and enables the plugin, and turns on the API server if it's off. <code>hermes plugins disable speakeasy</code> and a restart undo it.</p></details>
-    <details><summary>Which models are involved?</summary><p>Three, each your choice. The speech model (GPT-Live-1 through Codex OAuth or the API) only converses and hands off. A router model from your Hermes config (<code>auxiliary.speakeasy_router</code>) splits requests, matches follow-ups and picks channels. The work itself runs on whatever your Hermes already uses.</p></details>
-    <details><summary>Can I edit what the voice knows about me?</summary><p>Yes. The brief is plain text, editable in the client's settings, and your Hermes can refresh it automatically.</p></details>
+    <details><summary>What leaves my computer?</summary><p>Your voice goes to OpenAI, through your own account, so GPT-Live-1 can hear you. Your tasks and their results stay with your Hermes. Speakeasy has no servers of its own.</p></details>
+    <details><summary>What does it cost?</summary><p>Speakeasy is free. The voice uses your ChatGPT plan, or your OpenAI API key billed by the minute if you choose that instead.</p></details>
+    <details><summary>Can I undo it?</summary><p>Yes. Ask your agent to remove Speakeasy, or turn it off in Hermes, and drag the app to the Trash.</p></details>
+    <details><summary>Can I change what the voice knows about me?</summary><p>Yes. Hermes writes the voice a short summary of you and what it can help with. You can read and edit it in the app's settings.</p></details>
   </div>
 </section>
 
