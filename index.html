@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speakeasy — a realtime voice interface for Hermes Agent</title>
+<meta name="description" content="Speakeasy is a Hermes Agent plugin and native macOS client: realtime speech in front, your own Hermes sessions, tools and memory behind it.">
+<style>
+  :root{
+    --bg:#0d0b09; --panel:#16130f; --line:#2a241c; --ink:#f3ece0; --mute:#a59a88;
+    --brass:#d4a24c; --brass2:#f0c872; --green:#6fcf8e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font:17px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  .serif{font-family:"New York","Iowan Old Style","Georgia",serif;letter-spacing:-.01em}
+
+  /* nav */
+  nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.02em;text-decoration:none}
+  .mark{width:28px;height:28px;border-radius:8px;background:radial-gradient(circle at 30% 30%,var(--brass2),var(--brass) 60%,#8a6427);display:grid;place-items:center;color:#1a1208;font-size:15px}
+  nav .links{display:flex;gap:26px;font-size:15px;color:var(--mute)}
+  nav .links a{text-decoration:none} nav .links a:hover{color:var(--ink)}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:70px 0 90px}
+  .eyebrow{color:var(--brass);font-size:13px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px}
+  h1{font-size:64px;line-height:1.02;font-weight:500;margin-bottom:22px}
+  h1 em{font-style:italic;color:var(--brass2)}
+  .lede{color:var(--mute);font-size:20px;max-width:520px;margin-bottom:34px}
+  .ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:12px;font-weight:600;text-decoration:none;font-size:16px}
+  .btn.primary{background:var(--brass);color:#17110a}
+  .btn.primary:hover{background:var(--brass2)}
+  .btn.ghost{border:1px solid var(--line);color:var(--ink)}
+  .fine{color:var(--mute);font-size:14px;margin-top:16px}
+
+  /* panel mock */
+  .mock{background:linear-gradient(180deg,#1c1813,#14110d);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 0 1px rgba(212,162,76,.06) inset}
+  .bar{display:flex;align-items:center;gap:12px;padding:6px 6px 16px;border-bottom:1px solid var(--line)}
+  .orb{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffe3a3,var(--brass) 55%,#6b4a18);box-shadow:0 0 22px rgba(240,200,114,.45);animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{50%{box-shadow:0 0 34px rgba(240,200,114,.75);transform:scale(1.05)}}
+  .who{flex:1;min-width:0}
+  .who b{display:block;font-size:15px}
+  .who span{color:var(--mute);font-size:13px}
+  .icon{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#241f18;border:1px solid var(--line)}
+  .icon svg{width:16px;height:16px}
+  .icon.live{background:rgba(111,207,142,.14);border-color:rgba(111,207,142,.4)}
+  .icon.end{background:#c2412f;border-color:#c2412f}
+  .said{padding:16px 6px 6px;font-size:15px;color:#d9cfbf}
+  .said .you{color:var(--mute);font-size:13px;margin-bottom:4px}
+  .task{margin:12px 6px 0;padding:12px 14px;background:#1d1914;border:1px solid var(--line);border-radius:14px}
+  .task .t{display:flex;justify-content:space-between;gap:10px;font-size:14px;font-weight:600}
+  .task .s{color:var(--mute);font-size:13px;margin-top:3px}
+  .pill{font-size:11px;padding:2px 8px;border-radius:99px;background:rgba(212,162,76,.14);color:var(--brass2);white-space:nowrap;height:fit-content}
+  .pill.done{background:rgba(111,207,142,.14);color:var(--green)}
+  .dots::after{content:"";animation:dots 1.4s steps(4,end) infinite}
+  @keyframes dots{0%{content:""}25%{content:"."}50%{content:".."}75%{content:"..."}}
+
+  /* sections */
+  section{padding:90px 0;border-top:1px solid var(--line)}
+  h2{font-size:40px;font-weight:500;line-height:1.1;margin-bottom:16px}
+  .sub{color:var(--mute);max-width:620px;font-size:18px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px}
+  .card h3{font-size:18px;margin-bottom:8px}
+  .card p{color:var(--mute);font-size:15px}
+  .num{font-family:"New York",Georgia,serif;color:var(--brass);font-size:30px;margin-bottom:8px}
+
+  .features{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 40px;margin-top:46px}
+  .feat{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+  .feat .ic{flex:none;width:38px;height:38px;border-radius:10px;background:rgba(212,162,76,.12);display:grid;place-items:center;color:var(--brass2)}
+  .feat h3{font-size:17px;margin-bottom:4px}
+  .feat p{color:var(--mute);font-size:15px}
+
+  pre{background:#0a0907;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:30px;font:15px/1.8 "SF Mono",ui-monospace,Menlo,monospace;color:#e9dfcd;overflow:auto}
+  pre .c{color:#7d725f}
+  .req{display:flex;gap:26px;flex-wrap:wrap;margin-top:22px;color:var(--mute);font-size:15px}
+  .req span::before{content:"✓ ";color:var(--green)}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  code{font:14px "SF Mono",ui-monospace,Menlo,monospace;background:#1d1914;border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:#e9dfcd}
+  .arch{margin-top:34px;font:14px/1.9 "SF Mono",ui-monospace,Menlo,monospace;color:#cfc4b2;background:#0a0907;border:1px solid var(--line);border-radius:14px;padding:22px 24px;overflow:auto;white-space:pre}
+  .arch b{color:var(--brass2);font-weight:500}
+  .phone{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:30px}
+  .phone .tag{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);margin-bottom:10px}
+
+  details{border-bottom:1px solid var(--line);padding:20px 0}
+  summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between}
+  summary::after{content:"+";color:var(--brass);font-size:22px;line-height:1}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--mute);margin-top:10px;max-width:760px}
+
+  footer{border-top:1px solid var(--line);padding:40px 0 60px;color:var(--mute);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+  .hero>*,.split>*,.grid3>*,.features>*{min-width:0}
+  pre{white-space:pre;max-width:100%}
+  @media (max-width:860px){
+    .wrap{padding:0 20px}
+    pre{font-size:12.5px;padding:18px}
+    .hero,.split{grid-template-columns:1fr}
+    h1{font-size:46px}
+    .grid3,.features{grid-template-columns:1fr}
+    nav .links{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#"><span class="mark">◆</span> Speakeasy</a>
+    <div class="links">
+      <a href="#how">Architecture</a>
+      <a href="#features">Features</a>
+      <a href="#install">Install</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">For Hermes Agent</div>
+      <h1 class="serif">A realtime voice for <em>your</em> Hermes.</h1>
+      <p class="lede">Speakeasy is a Hermes plugin with a native macOS client. A low-latency speech model handles the conversation. Real work goes to your own Hermes sessions, with their tools, skills, memory and approvals, and several tasks can run in parallel while you keep talking.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#install">Install the plugin</a>
+        <a class="btn ghost" href="#how">How it's built</a>
+      </div>
+      <p class="fine">GPT-Live-1 via Codex OAuth or the OpenAI API · local or Tailscale · macOS 14+ client · MIT</p>
+    </div>
+
+    <div class="mock" aria-label="The Speakeasy call panel">
+      <div class="bar">
+        <div class="orb"></div>
+        <div class="who"><b>Hermes</b><span>Listening</span></div>
+        <div class="icon" title="Pause"><svg viewBox="0 0 24 24" fill="#e9dfcd"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></div>
+        <div class="icon live" title="Mute"><svg viewBox="0 0 24 24" fill="#6fcf8e"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0" stroke="#6fcf8e" stroke-width="2" fill="none"/><rect x="11" y="18" width="2" height="3"/></svg></div>
+        <div class="icon end" title="End call"><svg viewBox="0 0 24 24" fill="#fff"><path d="M3 14c5-5 13-5 18 0l-2.5 2.5-3.5-1.5v-2.5a10 10 0 0 0-6 0V15L5.5 16.5z"/></svg></div>
+      </div>
+      <div class="said">
+        <div class="you">You</div>
+        “Check why last night's deploy failed, and open a thread in build to fix it.”
+      </div>
+      <div class="said"><div class="you">Hermes</div>“On it. Started that in a new #build thread.”</div>
+      <div class="task">
+        <div class="t">Deploy failure <span class="pill">Working</span></div>
+        <div class="s dots">Reading the CI log for the failed job</div>
+      </div>
+      <div class="task">
+        <div class="t">Weekly calendar <span class="pill done">Done</span></div>
+        <div class="s">Four events; nothing before Wednesday.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="how">
+  <div class="wrap">
+    <h2 class="serif">Voice in front, Hermes behind.</h2>
+    <p class="sub">Speakeasy has no brain of its own. The speech model only talks and dispatches; anything that needs a tool, a file or a decision becomes a Hermes run. No extra daemon, no hosted relay.</p>
+<div class="arch"><b>Mac client</b> ── WebRTC audio ──▶ <b>realtime speech model</b>  (GPT-Live-1 via Codex OAuth, or OpenAI API)
+     │                                         │ handoff
+     │ pairing token, HTTPS                    ▼
+     └──────────────▶ <b>Speakeasy plugin</b> (a platform inside your Hermes gateway)
+                                 │  /v1/runs · sessions API
+                                 ▼
+                          <b>your Hermes</b>: tools · skills · memory · approvals
+                                 │  hermes send
+                                 ▼
+                          Discord · Telegram · Slack · …</div>
+    <div class="grid3">
+      <div class="card"><div class="num">1</div><h3>A platform plugin</h3><p>Registers as a gateway platform and serves its own endpoint. It talks to Hermes over the public API only, so it keeps working across Hermes upgrades.</p></div>
+      <div class="card"><div class="num">2</div><h3>A brief, not a copy</h3><p>Your Hermes writes the voice a compact brief: who you are, active projects, what it can do. Secrets and identifiers are filtered before anything reaches the speech provider.</p></div>
+      <div class="card"><div class="num">3</div><h3>Parallel runs, your router model</h3><p>Each request is its own run with live progress. Splitting compound requests, matching follow-ups and picking a channel is one call to a model you choose in your Hermes config.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <h2 class="serif">What you get.</h2>
+    <div class="features">
+      <div class="feat"><div class="ic">#</div><div><h3>Routing by channel</h3><p>Opt in any <code>hermes send</code> target and give each a topic. Name one out loud (“put this in build”) or let a quick classifier pick. Optionally opens a fresh thread per task that you can keep working in.</p></div></div>
+      <div class="feat"><div class="ic">↺</div><div><h3>Session continuity</h3><p>Ask about something already in flight and the run continues inside that existing session, with its history, posting back to the same chat. Toggleable.</p></div></div>
+      <div class="feat"><div class="ic">✓</div><div><h3>Approvals stay yours</h3><p>The voice can't approve anything. Consequential actions stop at Hermes' own approval flow; outbound email renders as a card and only its button sends, bound to a hash of the exact draft.</p></div></div>
+      <div class="feat"><div class="ic">⌁</div><div><h3>GPT-Live-1: Codex OAuth or API</h3><p>Uses your ChatGPT account through Codex OAuth by default, so voice runs on the plan you already pay for. Or bring an OpenAI API key. Credentials stay on the Hermes host.</p></div></div>
+      <div class="feat"><div class="ic">⇆</div><div><h3>Tailscale built in</h3><p>Hermes on a home server, Mac on the road: setup detects Tailscale and publishes the voice endpoint on your tailnet only via Tailscale Serve, never Funnel. Same-machine setups use loopback. Devices pair with a single-use link.</p></div></div>
+      <div class="feat"><div class="ic">⌘</div><div><h3>A native client</h3><p>Global hotkey, floating panel with a slim mode, per-task progress, mute and pause. Handles AirPods switching sample rate mid-call.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <h2 class="serif">Install.</h2>
+    <p class="sub">On the Hermes host. Setup enables the API server if needed, signs in the speech provider, restarts the gateway with your confirmation, waits for the voice endpoint to come up, then opens a pairing link for the Mac client.</p>
+<pre><span class="c"># add the plugin</span>
+hermes plugins install rungmc357/speakeasy#plugin/speakeasy --enable
+
+<span class="c"># configure, restart, pair</span>
+hermes voice setup                 <span class="c"># detects Tailscale automatically</span>
+hermes voice setup --api-key       <span class="c"># use an OpenAI API key instead</span></pre>
+    <div class="req"><span>Hermes Agent with the gateway running</span><span>macOS 14+ for the client</span><span>ChatGPT account or OpenAI API key</span></div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2 class="serif">FAQ</h2>
+    <details><summary>What leaves my machine?</summary><p>Audio and the voice brief go to the speech provider you chose (OpenAI, through your own account). Task content goes only to your Hermes. There is no Speakeasy server.</p></details>
+    <details><summary>Does it change my Hermes config?</summary><p>Setup adds one platform block and enables the plugin, and turns on the API server if it's off. <code>hermes plugins disable speakeasy</code> and a restart undo it.</p></details>
+    <details><summary>Which models are involved?</summary><p>Three, each your choice. The speech model (GPT-Live-1 through Codex OAuth or the API) only converses and hands off. A router model from your Hermes config (<code>auxiliary.speakeasy_router</code>) splits requests, matches follow-ups and picks channels. The work itself runs on whatever your Hermes already uses.</p></details>
+    <details><summary>Can I edit what the voice knows about me?</summary><p>Yes. The brief is plain text, editable in the client's settings, and your Hermes can refresh it automatically.</p></details>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>◆ Speakeasy · speakeasyvoice.ai</span>
+    <span>Independent project. Not affiliated with Nous Research or OpenAI.</span>
+  </footer>
+</div>
+</body>
+</html>
