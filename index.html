@@ -123,37 +123,39 @@
   .shot h3{font-size:19px;font-weight:600;margin-bottom:6px}
   .shot p{color:var(--mute);font-size:16px}
   @media (max-width:820px){.shots{grid-template-columns:1fr}}
-  /* Scroll story: the screen stays put while the four examples change as you scroll. */
-  .story .shots{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:0 64px;margin-top:24px}
-  .story .steps{grid-column:1;grid-row:1}
-  .story .step{min-height:78vh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .45s ease}
-  .story .step.on{opacity:1}
-  .story .step .n{color:var(--brass);font-size:13px;letter-spacing:.18em;margin-bottom:10px}
-  .story .step h3{font-size:26px;margin-bottom:10px;color:var(--ink)}
-  .story .step p{font-size:17px;max-width:400px;color:var(--mute)}
-  .story .stage{grid-column:2;grid-row:1;position:sticky;top:12vh;height:76vh;display:flex;align-items:center;justify-content:center}
-  .story .stage img{position:absolute;max-width:100%;max-height:100%;width:auto;margin:0;opacity:0;transform:translateY(24px) scale(.97);transition:opacity .55s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
-  .story .stage img.on{opacity:1;transform:none}
-  .story .dots{position:absolute;right:-28px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px}
-  .story .dots i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:background .3s}
-  .story .dots i.on{background:var(--brass)}
-  .story .step img.inline{display:none}
-  /* Phones: the screen pins to the top half and the captions scroll underneath it. */
+  /* See it: the section pins while you scroll; each screen and its caption fade in together. */
+  #see.story{padding:0}
+  .story .track{height:400vh;position:relative}
+  .story .pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden}
+  .story .pin .wrap{width:100%}
+  .story .slides{position:relative;height:min(62vh,560px);margin-top:36px}
+  .story .slide{position:absolute;inset:0;margin:0;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);
+    gap:64px;align-items:center;opacity:0;transform:translateY(18px);pointer-events:none;
+    transition:opacity .6s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .story .slide.on{opacity:1;transform:none;pointer-events:auto}
+  .story .pic{height:100%;display:flex;align-items:center;justify-content:center}
+  .story .pic img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;filter:drop-shadow(0 30px 50px rgba(0,0,0,.55))}
+  .story .n{color:var(--brass);font-size:13px;letter-spacing:.18em;margin-bottom:10px}
+  .story h3{font-size:28px;margin-bottom:12px;color:var(--ink)}
+  .story figcaption p{font-size:17px;max-width:400px;color:var(--mute)}
+  .story .pager{position:absolute;left:50%;bottom:-40px;transform:translateX(-50%);display:flex;gap:10px}
+  .story .pager i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:background .3s}
+  .story .pager i.on{background:var(--brass)}
   @media (max-width:820px){
-    .story .shots{display:flex;flex-direction:column;gap:0}
-    .story .stage{order:-1;top:0;width:100%;height:54vh;z-index:2;padding:14px 0 18px;
-      background:linear-gradient(var(--bg) 88%,rgba(13,11,9,0))}
-    .story .stage img{max-width:100%;max-height:calc(100% - 32px)}
-    .story .dots{right:auto;left:50%;top:auto;bottom:6px;transform:translateX(-50%);flex-direction:row}
-    .story .step{min-height:46vh;justify-content:flex-start;padding-top:4vh}
-    .story .step:last-child{min-height:40vh}
-    .story .step h3{font-size:22px}
+    .story .slides{height:68vh;margin-top:24px}
+    .story .slide{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;gap:20px;align-items:start}
+    .story .pic{min-height:0;align-items:flex-end}
+    .story h3{font-size:22px;margin-bottom:6px}
+    .story figcaption p{font-size:16px}
+    .story .pager{bottom:-28px}
   }
   @media (prefers-reduced-motion:reduce){
-    .story .shots{display:grid;grid-template-columns:1fr}
-    .story .stage{display:none}
-    .story .step{min-height:0;opacity:1;margin-bottom:56px;padding:0}
-    .story .step img.inline{display:block;width:100%;max-width:432px;height:auto;margin:0 0 22px;filter:drop-shadow(0 30px 50px rgba(0,0,0,.55))}
+    .story .track{height:auto}
+    .story .pin{position:static;height:auto;padding:80px 0}
+    .story .slides{height:auto}
+    .story .slide{position:static;opacity:1;transform:none;margin-bottom:64px;pointer-events:auto}
+    .story .pic{height:auto}
+    .story .pager{display:none}
   }
 </style>
 </head>
@@ -212,22 +214,18 @@
 </div>
 
 <section id="see" class="story">
-  <div class="wrap">
-    <h2 class="serif">See it.</h2>
-    <p class="sub">A small panel next to whatever you're doing. Talk, and watch the work happen.</p>
-    <div class="shots">
-      <div class="steps">
-        <div class="step on" data-i="0"><img class="inline" src="img/task-detail.png" alt="See what each task is doing" loading="lazy" width="400"><div class="n">01</div><h3>See what each task is doing</h3><p>Tap a task to see what you asked, what it's doing now, and every step so far. Stop it from there if you change your mind.</p></div>
-        <div class="step" data-i="1"><img class="inline" src="img/email-draft.png" alt="Read the email before it goes" loading="lazy" width="400"><div class="n">02</div><h3>Read the email before it goes</h3><p>Hermes drafts it; you see the full email. Send it, deny it, or just say what to change.</p></div>
-        <div class="step" data-i="2"><img class="inline" src="img/approval.png" alt="Nothing risky happens on its own" loading="lazy" width="400"><div class="n">03</div><h3>Nothing risky happens on its own</h3><p>Anything Hermes would normally check with you shows up here. The voice can't approve it for you.</p></div>
-        <div class="step" data-i="3"><img class="inline" src="img/product-card.png" alt="Results you can look at" loading="lazy" width="400"><div class="n">04</div><h3>Results you can look at</h3><p>Products, links and pictures land as cards you can open, while the voice gives you the short version.</p></div>
-      </div>
-      <div class="stage" aria-hidden="true">
-        <img src="img/task-detail.png" alt="See what each task is doing" class="on" width="400">
-        <img src="img/email-draft.png" alt="Read the email before it goes" width="400">
-        <img src="img/approval.png" alt="Nothing risky happens on its own" width="400">
-        <img src="img/product-card.png" alt="Results you can look at" width="400">
-        <div class="dots"><i class="on"></i><i></i><i></i><i></i></div>
+  <div class="track">
+    <div class="pin">
+      <div class="wrap">
+        <h2 class="serif">See it.</h2>
+        <p class="sub">A small panel next to whatever you're doing. Talk, and watch the work happen.</p>
+        <div class="slides">
+          <figure class="slide on" data-i="0"><div class="pic"><img src="img/task-detail.png" alt="See what each task is doing" width="400"></div><figcaption><div class="n">01</div><h3>See what each task is doing</h3><p>Tap a task to see what you asked, what it's doing now, and every step so far. Stop it from there if you change your mind.</p></figcaption></figure>
+          <figure class="slide" data-i="1"><div class="pic"><img src="img/email-draft.png" alt="Read the email before it goes" width="400" loading="lazy"></div><figcaption><div class="n">02</div><h3>Read the email before it goes</h3><p>Hermes drafts it; you see the full email. Send it, deny it, or just say what to change.</p></figcaption></figure>
+          <figure class="slide" data-i="2"><div class="pic"><img src="img/approval.png" alt="Nothing risky happens on its own" width="400" loading="lazy"></div><figcaption><div class="n">03</div><h3>Nothing risky happens on its own</h3><p>Anything Hermes would normally check with you shows up here. The voice can't approve it for you.</p></figcaption></figure>
+          <figure class="slide" data-i="3"><div class="pic"><img src="img/product-card.png" alt="Results you can look at" width="400" loading="lazy"></div><figcaption><div class="n">04</div><h3>Results you can look at</h3><p>Products, links and pictures land as cards you can open, while the voice gives you the short version.</p></figcaption></figure>
+          <div class="pager" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+        </div>
       </div>
     </div>
   </div>
@@ -298,21 +296,21 @@ document.getElementById("copy-prompt").addEventListener("click", async (e) => {
 </script>
 <script>
 (() => {
-  const steps = [...document.querySelectorAll('.story .step')];
-  const imgs = [...document.querySelectorAll('.story .stage img')];
-  const dots = [...document.querySelectorAll('.story .dots i')];
-  if (!steps.length) return;
-  const show = i => [steps, imgs, dots].forEach(list => list.forEach((el, j) => el.classList.toggle('on', j === i)));
-  // The active step is the last one whose top has passed a line on screen: mid-screen on desktop,
-  // just under the pinned screen on phones (it covers the top half there).
-  let current = -1;
+  const track = document.querySelector('.story .track');
+  const slides = [...document.querySelectorAll('.story .slide')];
+  const dots = [...document.querySelectorAll('.story .pager i')];
+  if (!track || !slides.length) return;
+  let current = 0;
+  // The section stays pinned for the height of the track; progress through it picks the slide.
   const update = () => {
-    const line = innerHeight * (matchMedia('(max-width:820px)').matches ? 0.7 : 0.5);
-    let i = 0;
-    steps.forEach((el, j) => { if (el.getBoundingClientRect().top < line) i = j; });
-    if (i !== current) { current = i; show(i); }
+    const r = track.getBoundingClientRect();
+    const span = r.height - innerHeight;
+    const progress = span > 0 ? Math.min(Math.max(-r.top / span, 0), 0.9999) : 0;
+    const i = Math.floor(progress * slides.length);
+    if (i === current) return;
+    current = i;
+    [slides, dots].forEach(list => list.forEach((el, j) => el.classList.toggle('on', j === i)));
   };
-  // Four rect reads per scroll event is cheap; browsers already deliver scroll once per frame.
   addEventListener('scroll', update, { passive: true });
   addEventListener('resize', update);
   update();
