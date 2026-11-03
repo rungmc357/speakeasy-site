@@ -8,6 +8,21 @@ That Mac may be the machine Hermes runs on, or a different one (Hermes often liv
 or a server while the user talks from a laptop). Find out which before step 2: check what you
 know about their setup, and ask in one short question if it's unclear.
 
+## Setting up for an iPhone or iPad
+
+If the user wants to talk from an **iPhone or iPad** (they'll usually say so, or the request
+came from the Speakeasy iOS app), follow the same steps with these differences:
+
+- Treat it as **a different device**: always do step 2. The phone reaches Hermes only over
+  Tailscale (an https `*.ts.net` address), so this machine must be on Tailscale with HTTPS
+  certificates on, and the phone needs the Tailscale app signed in to the **same account**.
+  Tell the user that in the same message as the link.
+- In step 3, use `hermes voice setup --send <this chat> --yes` so the pairing link arrives in
+  the chat they're reading on the phone. Never use `--here` for a phone.
+- They tap the link on the phone and the Speakeasy app pairs. If tapping doesn't open the app,
+  they can copy the link and paste it into the app's first screen.
+- To pair another phone later: `hermes voice pair --send <this chat>`.
+
 ## 1. Install the plugin
 
     hermes plugins install rungmc357/speakeasy/plugin/speakeasy --enable
