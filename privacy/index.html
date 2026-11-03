@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Privacy · Speakeasy</title>
+<meta name="description" content="How Speakeasy handles your voice and data: no accounts, no analytics, no tracking.">
+<style>
+  :root{--bg:#0d0b09;--panel:#16130f;--line:#2a241c;--ink:#f3ece0;--mute:#a59a88;--brass:#d4a24c;--brass2:#f0c872}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font:17px/1.65 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--brass2)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0;font-size:15px}
+  nav a{color:var(--ink);text-decoration:none;font-weight:600;letter-spacing:.02em}
+  nav .links{display:flex;gap:22px} nav .links a{color:var(--mute);font-weight:400}
+  h1{font-family:"New York","Iowan Old Style",Georgia,serif;font-size:44px;line-height:1.1;font-weight:500;margin:40px 0 10px}
+  .date{color:var(--mute);font-size:14px;margin-bottom:34px}
+  .lede{font-size:19px;color:#e2d8c8;margin-bottom:28px}
+  h2{font-size:21px;margin:38px 0 10px}
+  p,li{color:#d9cfbf} p{margin-bottom:14px}
+  ul{margin:0 0 14px 22px} li{margin-bottom:8px}
+  .box{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:22px 0}
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:28px 0 50px;color:var(--mute);font-size:14px}
+  footer a{color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">Speakeasy</a><span class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="https://github.com/rungmc357/speakeasy">GitHub</a></span></nav>
+<h1>Privacy</h1>
+<p class="date">Effective November 2, 2026</p>
+<p class="lede">Speakeasy is a voice app for your own Hermes agent. It has no accounts, no analytics, no ads and no tracking. We don't run a server that your calls or data pass through, and we don't collect anything about you.</p>
+
+<div class="box">
+<p><b>The short version.</b> The app talks to your Hermes server. Your Hermes server talks to the voice service you picked. That's where your data goes, and nowhere else.</p>
+</div>
+
+<h2>Who runs what</h2>
+<p>Speakeasy has two parts: a plugin you install on your own Hermes agent, and the app on your Mac, iPhone or iPad. The plugin runs on your computer, under your control. The app connects only to the Hermes server you pair it with. We (the people who make Speakeasy) have no way to see your calls, your requests or what your agent does.</p>
+
+<h2>Your voice</h2>
+<ul>
+<li>The app uses the microphone only during a call you start, or while you turn on listening mode during a call. It never uses the camera.</li>
+<li>During a call, your voice goes to the realtime voice service set on your Hermes: OpenAI (through your ChatGPT sign-in or your OpenAI API key), or xAI (through your X or SuperGrok sign-in) if you turned on Grok Voice. It travels through your Hermes server, or directly over an encrypted connection your server sets up. It uses your own account with that service, and that service's privacy policy applies to it.</li>
+<li>While a call is still connecting, and in listening mode, the app transcribes speech on your device using Apple's on-device speech recognition. That text stays in the app's memory and is sent to your Hermes only when the call picks it up.</li>
+</ul>
+
+<h2>What you ask for</h2>
+<p>When you ask for something that needs real work (a search, an email, a booking), your Hermes agent does it with the tools, accounts and AI models you've set up on it. Call transcripts, tasks and results are kept by your Hermes server on your computer. What happens to them from there is up to your Hermes setup and the services it uses.</p>
+
+<h2>What stays on your device</h2>
+<ul>
+<li>The pairing token, kept in the device's Keychain. You can remove it any time in Settings, and ask Hermes to revoke it on the server.</li>
+<li>Your settings and your Hermes server's address.</li>
+<li>Widgets, Live Activities and Lock Screen controls show call status on your device only.</li>
+</ul>
+
+<h2>Other connections</h2>
+<ul>
+<li>The app checks GitHub now and then for a newer version of the Speakeasy plugin. That's a plain download of a public file; it doesn't include anything about you.</li>
+<li>Pairing over another network uses Tailscale, if you set it up. Tailscale's own privacy policy applies to it.</li>
+<li>If you test a beta through TestFlight, Apple may share crash reports and any feedback you choose to send with the developer, under Apple's TestFlight terms.</li>
+</ul>
+
+<h2>Children</h2>
+<p>Speakeasy isn't directed at children under 13, and we don't knowingly collect anything from anyone, of any age.</p>
+
+<h2>Changes</h2>
+<p>If this policy changes, the new version will be posted here with a new effective date.</p>
+
+<h2>Contact</h2>
+<p>Questions about privacy: <a href="mailto:support@speakeasyvoice.ai">support@speakeasyvoice.ai</a>.</p>
+<footer>Speakeasy · <a href="https://github.com/rungmc357/speakeasy">GitHub</a> · MIT · Made by <a href="https://georgio.co">Georgio Constantinou</a><br>Independent project. Not affiliated with Nous Research, OpenAI or xAI.</footer>
+</div>
+</body>
+</html>

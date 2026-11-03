@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Support · Speakeasy</title>
+<meta name="description" content="Set up, pair and troubleshoot Speakeasy, the voice app for your Hermes agent.">
+<style>
+  :root{--bg:#0d0b09;--panel:#16130f;--line:#2a241c;--ink:#f3ece0;--mute:#a59a88;--brass:#d4a24c;--brass2:#f0c872}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font:17px/1.65 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--brass2)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0;font-size:15px}
+  nav a{color:var(--ink);text-decoration:none;font-weight:600;letter-spacing:.02em}
+  nav .links{display:flex;gap:22px} nav .links a{color:var(--mute);font-weight:400}
+  h1{font-family:"New York","Iowan Old Style",Georgia,serif;font-size:44px;line-height:1.1;font-weight:500;margin:40px 0 10px}
+  .date{color:var(--mute);font-size:14px;margin-bottom:34px}
+  .lede{font-size:19px;color:#e2d8c8;margin-bottom:28px}
+  h2{font-size:21px;margin:38px 0 10px}
+  p,li{color:#d9cfbf} p{margin-bottom:14px}
+  ul{margin:0 0 14px 22px} li{margin-bottom:8px}
+  .box{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:22px 0}
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:28px 0 50px;color:var(--mute);font-size:14px}
+  footer a{color:var(--mute)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">Speakeasy</a><span class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="https://github.com/rungmc357/speakeasy">GitHub</a></span></nav>
+<h1>Support</h1>
+<p class="lede">Speakeasy lets you call your own Hermes agent: ask for a few things, keep talking while it works, and hear when each one is done.</p>
+
+<h2>What you need</h2>
+<ul>
+<li>A <a href="https://hermes-agent.nousresearch.com/docs">Hermes</a> agent with the Speakeasy plugin installed. Ask your agent: <i>“Install Speakeasy for me: speakeasyvoice.ai/setup.md”</i>.</li>
+<li>A voice service on that Hermes: a ChatGPT sign-in, or an OpenAI API key.</li>
+<li><a href="https://tailscale.com/download">Tailscale</a> on both your Hermes computer and this device, signed in to the same account, if Hermes runs on another machine.</li>
+</ul>
+<p>No Hermes yet? Tap <b>Try a sample call</b> on the app's first screen to see how a call works. Nothing connects and the mic stays off.</p>
+
+<h2>Pairing</h2>
+<ol style="margin:0 0 14px 22px">
+<li>Ask your Hermes agent: <i>“Pair my iPhone with Speakeasy.”</i></li>
+<li>Tap the link it sends you. The app opens and pairs.</li>
+<li>Or copy the link, open Speakeasy, and paste it in.</li>
+</ol>
+<p>Pairing links include a one-time 6-digit code that expires. If one doesn't work, ask Hermes for a new one.</p>
+
+<h2>Common problems</h2>
+<ul>
+<li><b>The app can't reach your Hermes.</b> Check that Tailscale is on, on both devices, with the same account. Then use <b>Test connection</b> under Settings.</li>
+<li><b>The call connects but nobody answers.</b> The voice service on your Hermes may need you to sign in again. Ask your agent to check Speakeasy's voice setup.</li>
+<li><b>The app says a plugin update is available.</b> Tap <b>Copy the request for Hermes</b> in Settings and send it to your agent. Restart Hermes when it asks.</li>
+<li><b>Starting a call without opening the app.</b> Add the Speakeasy widget or the <b>Start Speakeasy</b> control, set the Action Button to <b>Talk to Speakeasy</b>, or say <i>“Hey Siri, talk to Speakeasy.”</i></li>
+</ul>
+
+<h2>Get help</h2>
+<ul>
+<li>Email <a href="mailto:support@speakeasyvoice.ai">support@speakeasyvoice.ai</a>.</li>
+<li>Report a bug or ask for a feature on <a href="https://github.com/rungmc357/speakeasy/issues">GitHub</a>.</li>
+<li>Testing the beta? Take a screenshot in the app and send it as TestFlight feedback.</li>
+</ul>
+<p>Privacy questions: see the <a href="/privacy/">privacy policy</a>.</p>
+<footer>Speakeasy · <a href="https://github.com/rungmc357/speakeasy">GitHub</a> · MIT · Made by <a href="https://georgio.co">Georgio Constantinou</a><br>Independent project. Not affiliated with Nous Research, OpenAI or xAI.</footer>
+</div>
+</body>
+</html>
