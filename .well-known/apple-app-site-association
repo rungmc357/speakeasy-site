@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["278P4D6M8C.co.georgio.toddvoice"],
+        "components": [
+          { "/": "/pair", "comment": "Pairing links from Hermes open Speakeasy directly" },
+          { "/": "/pair/", "comment": "Same, with a trailing slash" }
+        ]
+      }
+    ]
+  }
+}
