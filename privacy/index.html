@@ -63,6 +63,7 @@
 <li>The app checks GitHub now and then for a newer version of the Speakeasy plugin. That's a plain download of a public file; it doesn't include anything about you.</li>
 <li>Pairing over another network uses Tailscale, if you set it up. Tailscale's own privacy policy applies to it.</li>
 <li>If you use Cloudflare mode, an encrypted copy of your Hermes's address is posted to ntfy.sh so your phone can find it when it changes; it can't be read without your phone's key.</li>
+<li>If you turn on notifications, your Hermes sends a wake-up signal through Speakeasy's notification relay (a small service on Cloudflare) to Apple, which delivers it to your phone. The signal carries no words: no task names, messages or results, only your phone's notification token, the kind of update (finished, needs you, failed or new reply) and random ids. Your phone then fetches the text straight from your Hermes. The relay keeps no copy of your token beyond a short hash used for rate limits. You can turn notifications off in Settings › Notifications.</li>
 <li>If you test a beta through TestFlight, Apple may share crash reports and any feedback you choose to send with the developer, under Apple's TestFlight terms.</li>
 </ul>
 
