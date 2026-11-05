@@ -69,6 +69,16 @@
       <p class="small">The link works once and expires 30 minutes after your agent sent it.</p>
     </section>
 
+    <!-- "Update Speakeasy's address" (#server=…&update=1, no code): the tunnel moved -->
+    <section id="update" class="hide">
+      <h1>Open in Speakeasy to update its address</h1>
+      <p>Your Hermes sent this link because its address changed. Speakeasy checks it's really your Hermes before switching.</p>
+      <p class="small not-ios hide">Open this link on the iPhone or iPad where Speakeasy is installed.</p>
+      <a class="btn primary open-update" href="#">Open Speakeasy</a>
+      <div class="or">Don't have it yet?</div>
+      <a class="btn ghost testflight" href="https://testflight.apple.com/join/2v7PfpRM">Join the iPhone &amp; iPad beta</a>
+    </section>
+
     <section id="bad" class="hide">
       <h1>This link isn't complete</h1>
       <p>Ask your agent for a new Speakeasy pairing link and open it on your Mac, iPhone or iPad.</p>
@@ -92,6 +102,15 @@
   const tf = "https://testflight.apple.com/join/2v7PfpRM";
   const tfReady = /^https:\/\/testflight\.apple\.com\//.test(tf);
   document.querySelectorAll("a.testflight").forEach(a => { a.href = tfReady ? tf : "/#iphone"; });
+  // An update link carries only the new address; the app verifies it before switching.
+  const update = params.get("update") === "1" && !params.get("code") && /^https:\/\/[^\s/]+(:\d+)?\/?$/.test(server);
+  if (update) {
+    document.title = "Update Speakeasy's address";
+    document.querySelector("a.open-update").href = "speakeasy://update?server=" + encodeURIComponent(server);
+    if (!ios) document.querySelector("#update .not-ios").classList.remove("hide");
+    show("update");
+    return;
+  }
   if (!ok) { show("bad"); if (ios) document.querySelector("#bad .testflight").classList.remove("hide"); return; }
   const app = "speakeasy://pair?server=" + encodeURIComponent(server) + "&code=" + code;
   // Tailscale is only needed when Hermes is reached over a tailnet address.
