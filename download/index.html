@@ -2,76 +2,114 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0907">
 <title>Download Speakeasy</title>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/site.css">
 <style>
-  :root{--bg:#0d0b09;--panel:#16130f;--line:#2a241c;--ink:#f3ece0;--mute:#a59a88;--brass:#d4a24c;--brass2:#f0c872}
-  *{box-sizing:border-box;margin:0}
-  body{background:var(--bg);color:var(--ink);font:17px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;
-       -webkit-font-smoothing:antialiased;min-height:100vh;display:grid;place-items:center;padding:24px}
-  .card{max-width:520px;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:36px 32px}
-  .mark{height:64px;width:auto;margin:0 auto 16px;display:block}
-  h1{font:600 26px/1.25 "New York","Iowan Old Style",Georgia,serif;margin-bottom:8px;text-align:center}
-  .lead{color:var(--mute);text-align:center}
-  .lead a{color:var(--brass2)}
-  ol{list-style:none;padding:0;margin:26px 0 0;counter-reset:s}
-  ol>li{counter-increment:s;position:relative;padding-left:40px;margin-top:18px;color:var(--mute)}
-  ol>li::before{content:counter(s);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;
-       border:1px solid var(--line);color:var(--brass2);font-size:14px;display:grid;place-items:center}
-  ol>li b{color:var(--ink);font-weight:600}
-  .prompt{display:flex;gap:10px;align-items:center;margin-top:10px;background:var(--bg);border:1px solid var(--line);
-       border-radius:12px;padding:12px 12px 12px 16px}
-  .prompt p{flex:1;color:var(--ink);font:14px/1.45 ui-monospace,Menlo,monospace;word-break:break-word}
-  .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:10px;font-weight:600;
-       text-decoration:none;background:var(--brass);color:#17110a;border:0;font-size:15px;cursor:pointer;flex:none}
-  .btn:hover{background:var(--brass2)}
-  @media (max-width:480px){.prompt{flex-direction:column;align-items:stretch}.prompt .btn{width:100%}}
-  .small{font-size:14px;color:var(--mute);margin-top:22px;text-align:center}
-  .small a{color:var(--brass2)}
-  .hide{display:none}
+  .hide{display:none!important}
+  .dl{display:grid;grid-template-columns:1fr 360px;gap:56px;align-items:start;max-width:1060px;margin:0 auto;padding:64px 22px 40px}
+  .dl>*{min-width:0}
+  .dl h1{font-size:clamp(36px,5.4vw,56px);margin-bottom:14px}
+  .dl .lede a{color:var(--brass2)}
+  .dl ol.steps{grid-template-columns:1fr;margin-top:30px;gap:14px}
+  .dl ol.steps>li{padding:22px 24px;display:grid;grid-template-columns:36px 1fr;column-gap:16px}
+  .dl ol.steps>li::before{margin:0;grid-row:1 / span 3;grid-column:1}
+  .dl ol.steps>li>*{grid-column:2}
+  .dl ol.steps h3{font-size:18px;margin:6px 0 4px}
+  .dl .prompt{margin-top:12px;font-size:14px}
+  .dl .fine{margin-top:22px} .dl .fine a{color:var(--brass2)}
+  .dl .other{margin-top:28px;padding-top:22px;border-top:1px solid var(--line);color:var(--mute)}
+  .dl .other a{color:var(--brass2)}
+  .dl .side{position:sticky;top:90px;display:flex;justify-content:center}
+  .dl .side .mac{max-width:360px}
+  .dl .side .phone{--w:280px}
+  .dl .big{margin-top:24px}
+  .dl ol.steps p{color:var(--mute)} .dl ol.steps b{color:var(--ink);font-weight:600}
+  .dl ol.steps>li::before{grid-row:1 / span 2}
+  @media (max-width:900px){.dl{grid-template-columns:1fr;padding-top:40px}.dl .side{position:static;order:-1}.dl .side .mac{max-width:300px}.dl .side .phone{--w:220px}}
 </style>
 </head>
 <body>
-<main class="card">
-  <a href="/" aria-label="Speakeasy home"><svg class="mark" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="156 86 200 338"><defs><linearGradient id="g" gradientUnits="userSpaceOnUse" x1="0" y1="90" x2="0" y2="420"><stop offset="0" stop-color="#f0c872"/><stop offset="1" stop-color="#d4a24c"/></linearGradient></defs><path d="M214 270.9 A100 100 0 1 1 298 270.9 L332 414 H180 Z" fill="url(#g)"/><rect x="185.0" y="169.0" width="18" height="34" rx="9.0" fill="#0d0b09"/><rect x="216.0" y="151.0" width="18" height="70" rx="9.0" fill="#0d0b09"/><rect x="247.0" y="134.0" width="18" height="104" rx="9.0" fill="#0d0b09"/><rect x="278.0" y="151.0" width="18" height="70" rx="9.0" fill="#0d0b09"/><rect x="309.0" y="169.0" width="18" height="34" rx="9.0" fill="#0d0b09"/></svg></a>
+<header class="top">
+  <div class="wrap">
+    <nav aria-label="Main">
+      <a class="logo" href="/"><img src="/favicon.svg" alt="" width="28" height="28">Speakeasy</a>
+      <span class="links"><a href="/#call">A call</a><a href="/#faq">FAQ</a><a class="pill" href="/#setup">Set up</a></span>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="dl" id="mac">
+    <div>
+      <h1>Your download has started</h1>
+      <p class="lede">Didn't start? <a id="again" href="https://github.com/rungmc357/speakeasy/releases/latest/download/Speakeasy.dmg">Download again</a></p>
+      <ol class="steps">
+        <li><p><b>Open the download and drag Speakeasy into Applications.</b></p></li>
+        <li><p><b>Send this to your Hermes,</b> in whatever chat you use with it:</p>
+          <div class="prompt"><span class="prompt-text">Set up Speakeasy for me: https://speakeasyvoice.ai/setup.md</span><button class="copy" type="button">Copy</button></div></li>
+        <li><p><b>Restart Hermes</b> when it asks.</p></li>
+        <li><p><b>Open the link it sends you</b> on this Mac. Speakeasy connects, and you can start a call.</p></li>
+      </ol>
+      <p class="fine">Free · open source · macOS 14+ · <a href="/#setup">Set it up yourself</a></p>
+      <p class="other">Want it on your iPhone or iPad too? <a class="testflight" href="https://testflight.apple.com/join/2v7PfpRM">Join the iPhone &amp; iPad beta</a></p>
+    </div>
+    <div class="side">
+      <div class="mac">
+        <picture>
+          <source type="image/avif" srcset="/img/v2/mac-home.avif"><source type="image/webp" srcset="/img/v2/mac-home.webp">
+          <img src="/img/v2/mac-home.png" width="1000" height="1026" decoding="async"
+               alt="The Speakeasy panel on Mac with your jobs.">
+        </picture>
+      </div>
+    </div>
+  </div>
 
-  <section id="mac">
-    <h1>Your download has started</h1>
-    <p class="lead">Didn't start? <a id="again" href="https://github.com/rungmc357/speakeasy/releases/latest/download/Speakeasy.dmg">Download again</a></p>
-    <ol>
-      <li><b>Open the download and drag Speakeasy into Applications.</b></li>
-      <li><b>Send this to your Hermes,</b> in whatever chat you use with it:
-        <div class="prompt"><p class="prompt-text">Set up Speakeasy for me: https://speakeasyvoice.ai/setup.md</p><button class="btn copy" type="button">Copy</button></div>
-      </li>
-      <li><b>Restart Hermes</b> when it asks.</li>
-      <li><b>Open the link it sends you</b> on this Mac. Speakeasy connects, and you can start a call.</li>
-    </ol>
-    <p class="small">Free · open source · macOS 14+ · <a href="/#install">Set it up yourself</a></p>
-  </section>
-
-  <section id="phone" class="hide">
-    <h1>Speakeasy runs on a Mac</h1>
-    <p class="lead">You can start setup from here.</p>
-    <ol>
-      <li><b>Send this to your Hermes</b> now:
-        <div class="prompt"><p class="prompt-text">Set up Speakeasy for me: https://speakeasyvoice.ai/setup.md</p><button class="btn copy" type="button">Copy</button></div>
-      </li>
-      <li><b>Restart Hermes</b> when it asks.</li>
-      <li><b>Open the link it sends you on your Mac</b> within 30 minutes. It downloads Speakeasy if needed, then connects.</li>
-    </ol>
-    <p class="small"><a href="/">Back to Speakeasy</a></p>
-  </section>
+  <div class="dl hide" id="phone">
+    <div>
+      <h1>On your iPhone and iPad.</h1>
+      <p class="lede">The same calls, from your pocket. No Hermes yet? Open the app and try a sample call first.</p>
+      <a class="btn primary big testflight" href="https://testflight.apple.com/join/2v7PfpRM">Join the iPhone &amp; iPad beta</a>
+      <ol class="steps">
+        <li><p><b>Send this to your Hermes</b> now:</p>
+          <div class="prompt"><span class="prompt-text">Set up Speakeasy for me: https://speakeasyvoice.ai/setup.md</span><button class="copy" type="button">Copy</button></div></li>
+        <li><p><b>Restart Hermes</b> when it asks.</p></li>
+        <li><p><b>Open the link it sends you on this iPhone or iPad</b> within 30 minutes. It opens Speakeasy, or gets you the beta first, then connects.</p></li>
+      </ol>
+      <p class="fine"><a href="/">Back to Speakeasy</a></p>
+    </div>
+    <div class="side">
+      <div class="phone">
+        <picture>
+          <source type="image/avif" srcset="/img/v2/phone-home.avif"><source type="image/webp" srcset="/img/v2/phone-home.webp">
+          <img src="/img/v2/phone-home.jpg" width="660" height="1435" decoding="async"
+               alt="Speakeasy on iPhone with your jobs.">
+        </picture>
+      </div>
+    </div>
+  </div>
 </main>
+<div class="wrap">
+  <footer>
+    <span>Speakeasy · <a href="/privacy/">Privacy</a> · <a href="/support/">Support</a> · <a href="https://github.com/rungmc357/speakeasy">GitHub</a></span>
+    <span>Independent project. Not affiliated with Nous Research, OpenAI or xAI.</span>
+  </footer>
+</div>
 <script>
 (() => {
   const ua = navigator.userAgent;
-  const touchMac = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1;  // iPadOS reports as a Mac
-  const phone = /iPhone|iPad|iPod|Android/.test(ua) || touchMac;
+  const iPad = /iPad/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);  // iPadOS reports as a Mac
+  const phone = /iPhone|iPod|Android/.test(ua) || iPad || /[?&]ios\b/.test(location.search);  // ?ios shows the iPhone/iPad view
+  // Until the public TestFlight link is filled in, beta buttons fall back to the homepage sign-up.
+  const tf = "https://testflight.apple.com/join/2v7PfpRM";
+  const tfReady = /^https:\/\/testflight\.apple\.com\//.test(tf);
+  document.querySelectorAll("a.testflight").forEach(a => { a.href = tfReady ? tf : "/#iphone"; });
   if (phone) {
     document.getElementById("mac").classList.add("hide");
     document.getElementById("phone").classList.remove("hide");
-  } else {
+  } else if (!/[?&]nodl\b/.test(location.search)) {
     setTimeout(() => { location.href = document.getElementById("again").href; }, 300);
   }
   document.querySelectorAll(".copy").forEach(btn => btn.addEventListener("click", async () => {
