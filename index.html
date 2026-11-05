@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#0b0907">
 <meta property="og:title" content="Speakeasy: call your Hermes Agent">
 <meta property="og:description" content="Talk to your Hermes Agent like you'd talk to a person. Ask for a few things at once, keep talking while it works, and hear back when each one's done.">
-<meta property="og:image" content="https://speakeasyvoice.ai/img/v3/phone-decide-call.jpg">
+<meta property="og:image" content="https://speakeasyvoice.ai/img/v3/poster-hero-story.jpg">
 <link rel="stylesheet" href="/site.css">
 </head>
 <body>
@@ -41,12 +41,10 @@
     </div>
     <div class="art glow">
       <div class="phone hero-phone">
-        <picture>
-          <source srcset="img/v3/phone-decide-call.avif" type="image/avif">
-          <source srcset="img/v3/phone-decide-call.webp" type="image/webp">
-          <img src="img/v3/phone-decide-call.jpg" width="660" height="1435" fetchpriority="high" decoding="async"
-               alt="A Speakeasy call on iPhone: Hermes says the dashboard takes 9 seconds to load and asks how to fix it, with three options and the recommended one starred, while three jobs run">
-        </picture>
+        <video class="auto" autoplay muted loop playsinline preload="metadata" poster="img/v3/poster-hero-story.jpg" width="590" height="1282"
+               aria-label="A call on iPhone: you ask Hermes to fix a slow dashboard, its tool calls land with what it found so far, it comes back with three options with one recommended, you pick one and the load time drops from 9 seconds to under one">
+          <source src="img/v3/hero-story.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </section>
@@ -74,8 +72,10 @@
     </div>
     <div class="media pair reveal">
       <div class="phone">
-        <img src="img/v3/poster-tool-log.jpg" width="590" height="1282" loading="lazy" decoding="async"
-               alt="A job's page on iPhone: what it found so far, what it's doing now, and every tool call it made.">
+        <video class="lazyplay" muted loop playsinline preload="none" poster="img/v3/poster-tool-log.jpg" width="590" height="1282"
+               aria-label="A job's page on iPhone: what it found so far, what it's doing now, and every tool call it made.">
+          <source src="img/v3/tool-log.mp4" type="video/mp4">
+        </video>
       </div>
       <div class="phone">
         <picture>
