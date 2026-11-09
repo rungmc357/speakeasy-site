@@ -11,7 +11,7 @@ what you know about their setup, and ask in one short question if it's unclear.
 
 ## Setting up for an iPhone or iPad
 
-The iPhone and iPad app is a beta: https://testflight.apple.com/join/2v7PfpRM. If the user wants
+The iPhone and iPad app is an invite-only beta (the person who invited the user has the link). If the user wants
 to talk from an **iPhone or iPad** (they'll usually say so, or the request came from the Speakeasy
 iOS app), follow the same steps with these differences:
 

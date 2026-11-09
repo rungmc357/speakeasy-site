@@ -31,6 +31,7 @@
   .list .btn{margin-top:12px}
   .hide{display:none!important}
 </style>
+<style>a.testflight{display:none!important}</style>
 </head>
 <body>
 <main class="pair">
@@ -60,7 +61,7 @@
       <p>Your agent sent this link to connect the Speakeasy app on this iPhone or iPad.</p>
       <a class="btn primary open" href="#">Open Speakeasy</a>
       <div class="or">Don't have it yet?</div>
-      <a class="btn ghost testflight" href="https://testflight.apple.com/join/2v7PfpRM">Join the iPhone &amp; iPad beta</a>
+      <a class="btn ghost testflight" href="/">Join the iPhone &amp; iPad beta</a>
       <ol class="list">
         <li id="ts-step">Install <a href="https://apps.apple.com/app/tailscale/id1470499037">Tailscale</a> and sign in with the same account as the computer Hermes runs on.</li>
         <li>Come back to this page and tap <b>Open Speakeasy</b>. If nothing happens, copy the link and paste it into the app.
@@ -76,13 +77,13 @@
       <p class="small not-ios hide">Open this link on the iPhone or iPad where Speakeasy is installed.</p>
       <a class="btn primary open-update" href="#">Open Speakeasy</a>
       <div class="or">Don't have it yet?</div>
-      <a class="btn ghost testflight" href="https://testflight.apple.com/join/2v7PfpRM">Join the iPhone &amp; iPad beta</a>
+      <a class="btn ghost testflight" href="/">Join the iPhone &amp; iPad beta</a>
     </section>
 
     <section id="bad" class="hide">
       <h1>This link isn't complete</h1>
       <p>Ask your agent for a new Speakeasy pairing link and open it on your Mac, iPhone or iPad.</p>
-      <a class="btn primary testflight hide" href="https://testflight.apple.com/join/2v7PfpRM">Join the iPhone &amp; iPad beta</a>
+      <a class="btn primary testflight hide" href="/">Join the iPhone &amp; iPad beta</a>
       <a class="btn ghost" href="/">About Speakeasy</a>
     </section>
   </div>
@@ -99,7 +100,7 @@
   const ios = /iPhone|iPod/.test(ua) || iPad || /[?&]ios\b/.test(location.search);  // ?ios shows the iPhone/iPad view
   const show = id => document.getElementById(id).classList.remove("hide");
   // Until the public TestFlight link is filled in, beta buttons fall back to the sign-up on the homepage.
-  const tf = "https://testflight.apple.com/join/2v7PfpRM";
+  const tf = "";
   const tfReady = /^https:\/\/testflight\.apple\.com\//.test(tf);
   document.querySelectorAll("a.testflight").forEach(a => { a.href = tfReady ? tf : "/#iphone"; });
   // An update link carries only the new address; the app verifies it before switching.
